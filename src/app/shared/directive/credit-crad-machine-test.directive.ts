@@ -1,4 +1,3 @@
-
 import {
   Directive,
   ElementRef,
@@ -8,42 +7,32 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appCreditCard]'
+  selector: '[appCreditCradMachineTest]',
 })
-export class CreditCardDirective implements OnInit{
-
-    constructor(
+export class CreditCradMachineTestDirective implements OnInit {
+  constructor(
     private _eleRef: ElementRef,
     private _renderer: Renderer2,
   ) {}
-
-  
   ngOnInit(): void {
-    // strong.className = ` text-danger d-none`;
-    // strong.innerText=`Please enter valid  value `
-    // this._eleRef.nativeElement.parentelement.append(strong);
     let strong = this._renderer.createElement('strong');
-    this._renderer.addClass(strong,'text-danger');
-    this._renderer.addClass(strong,'d-none');
-    const msg =  this._renderer.createText(`Please Enter Valid Value..!`);
-    this._renderer.appendChild(strong,msg)
+    this._renderer.addClass(strong, 'text-danger');
+    this._renderer.addClass(strong, 'd-none');
+    const msg = this._renderer.createText(`Please Enter Valid value...!`);
+    this._renderer.appendChild(strong, msg);
     this._renderer.appendChild(
       this._eleRef.nativeElement.parentElement,
       strong,
     );
   }
-
   @HostListener('input', ['$event'])
-  validateCreaditCard(eve: Event) {
+  creditCardValidationCheck(eve: Event) {
     let inputControl = eve.target as HTMLInputElement;
     let val = inputControl.value.replace(/\s+/g, '');
 
     if (val.length > 16) {
       val = val.substring(0, 16);
     }
-    // console.log(val);
-    //console.log(inputControl.nextElementSibling);
-    //console.log(/[^\d]/.test(val));
     if (/[^\d]/.test(val)) {
       inputControl.nextElementSibling?.classList.remove('d-none');
     } else {
@@ -53,7 +42,8 @@ export class CreditCardDirective implements OnInit{
     val = this.formatCreditCardVal(val);
     inputControl.value = val;
   }
-  formatCreditCardVal(str: string) {
+  
+   formatCreditCardVal(str: string) {
     let chunkArr: string[] = [];
     for (let i = 0; i < str.length; i = i + 4) {
       let v = str.slice(i, i + 4);
@@ -62,4 +52,3 @@ export class CreditCardDirective implements OnInit{
     return chunkArr.join(' ');
   }
 }
-

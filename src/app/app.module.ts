@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CreditCardDirective } from './shared/directive/credit-card.directive';
+import { CreditCradMachineTestDirective } from './shared/directive/credit-crad-machine-test.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreditCardDirective
+    CreditCradMachineTestDirective
   ],
   imports: [
     BrowserModule
